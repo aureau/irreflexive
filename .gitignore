@@ -1,0 +1,6 @@
+DESIGN.md
+NOTES.md
+.env
+.venv/
+.cursor/
+__pycache__/

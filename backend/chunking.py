@@ -18,11 +18,6 @@ import os
 import trafilatura as tf
 import langchain_text_splitters as lc
 
-
-
-fox = 'webpages/mamdani-fox.html'
-nyt = 'webpages/mamdani-nyt.html'
-
 def extract_chunk_and_clean_article(article, isFile=True):
     if isFile:
         with open(article, 'r', encoding='utf-8') as file:

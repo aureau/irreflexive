@@ -15,6 +15,7 @@ def embed_article(article):
 def bias_axis(left_vecor, right_vector):
     # subtracting left from right
     bias_axis = right_vector - left_vecor
+    bias_axis = bias_axis / np.linalg.norm(bias_axis)
     return bias_axis
 
 def score_article(article, bias_axis, isTest=False):

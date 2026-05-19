@@ -1,0 +1,11 @@
+beautifulsoup4
+joblib
+kagglehub
+langchain-text-splitters
+numpy
+pandas
+requests
+scikit-learn
+sentence-transformers
+tqdm
+trafilatura

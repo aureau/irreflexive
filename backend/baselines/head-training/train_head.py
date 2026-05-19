@@ -14,19 +14,19 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-import os
 
-ARTIFACTS_DIR = "artifacts"
-X_PATH = os.path.join(ARTIFACTS_DIR, "train_X.npy")
-Y_PATH = os.path.join(ARTIFACTS_DIR, "train_y.npy")
-MODEL_PATH = os.path.join(ARTIFACTS_DIR, "bias_head.pkl")
-EXPECTED_LABELS = {"left", "center", "right"}
+BASE_DIR = Path(__file__).resolve().parent
+ARTIFACTS_DIR = BASE_DIR / "artifacts"
+X_PATH = ARTIFACTS_DIR / "train_X.npy"
+Y_PATH = ARTIFACTS_DIR / "train_y.npy"
+MODEL_PATH = ARTIFACTS_DIR / "bias_head.pkl"
+EXPECTED_LABELS = {"left", "right"}
 EXPECTED_VECTOR_SIZE = 384
 
 
 def load_training_artifacts() -> tuple[np.ndarray, np.ndarray]:
     for file_path in (X_PATH, Y_PATH):
-        if not os.path.exists(file_path):
+        if not file_path.exists():
             raise FileNotFoundError(f"Missing training artifact: {file_path}")
 
     X = np.load(X_PATH)

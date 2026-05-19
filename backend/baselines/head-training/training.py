@@ -1,8 +1,8 @@
 """
 Step 1: build (X, y) for the classifier head.
 
-WRONG (baseline / corpus — 3 vectors total):
-    for bias in ['left', 'center', 'right']:
+WRONG (baseline / corpus — one vector per class):
+    for bias in ['left', 'right']:
         texts = all articles with that label
         corpus_vector = mean(every article_vector in texts)   # ONE vector per class
 
@@ -12,12 +12,12 @@ RIGHT (head training — N vectors, one per article):
         append article_vector to X
         append this row's label to y
 
-Result:
+Binary MVP result:
     X.shape == (num_articles, 384)
-    y.shape == (num_articles,)
+    y.shape == (num_articles,)  # labels are "left" or "right"
 """
 
-import os
+from pathlib import Path
 
 import langchain_text_splitters as lc
 import numpy as np
@@ -28,8 +28,9 @@ from tqdm import tqdm
 # Set to an int (e.g. 500) for a quick test run; None = full train.csv
 LIMIT = None
 
-ARTIFACTS_DIR = "artifacts"
-CSV_PATH = "../datasets/train-test-datasets/train.csv"
+BASE_DIR = Path(__file__).resolve().parent
+ARTIFACTS_DIR = BASE_DIR / "artifacts"
+CSV_PATH = BASE_DIR.parent / "datasets" / "train-test-datasets" / "train.csv"
 
 model = SentenceTransformer("sentence-transformers/all-MiniLM-L12-v2")
 text_splitter = lc.RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=64)
@@ -37,7 +38,6 @@ text_splitter = lc.RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=
 bias_map = {
     "left": "left",
     "leaning-left": "left",
-    "center": "center",
     "leaning-right": "right",
     "right": "right",
 }
@@ -63,7 +63,7 @@ def article_to_vector(text: str) -> np.ndarray | None:
 
 
 def main():
-    os.makedirs(ARTIFACTS_DIR, exist_ok=True)
+    ARTIFACTS_DIR.mkdir(exist_ok=True)
 
     df = pd.read_csv(CSV_PATH)
     df = df.dropna(subset=["bias", "page_text"])
@@ -89,10 +89,10 @@ def main():
         y_list.append(label)
 
     X = np.stack(X_list)  # (N, 384)
-    y = np.array(y_list)  # (N,) strings: "left", "center", "right"
+    y = np.array(y_list)  # (N,) strings: "left", "right"
 
-    np.save(os.path.join(ARTIFACTS_DIR, "train_X.npy"), X)
-    np.save(os.path.join(ARTIFACTS_DIR, "train_y.npy"), y)
+    np.save(ARTIFACTS_DIR / "train_X.npy", X)
+    np.save(ARTIFACTS_DIR / "train_y.npy", y)
 
     print(f"Saved {X.shape[0]} article vectors to {ARTIFACTS_DIR}/")
     print(f"  train_X.npy  shape {X.shape}")

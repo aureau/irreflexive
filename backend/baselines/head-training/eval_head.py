@@ -1,5 +1,5 @@
 """
-Evaluate the trained classifier head on held-out test.csv rows.
+Evaluate the trained binary classifier head on held-out test.csv rows.
 
 This script builds test features with the same article_to_vector logic used for
 train_X.npy, loads the already-fitted bias_head.pkl, and predicts labels. It
@@ -14,7 +14,7 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from tqdm import tqdm
 
-from train_head import validate_vector_artifacts
+from train_head import EXPECTED_LABELS, validate_vector_artifacts
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -60,15 +60,26 @@ def main() -> None:
         raise FileNotFoundError(f"Missing test CSV: {TEST_CSV_PATH}")
 
     clf = joblib.load(MODEL_PATH)
+    clf_labels = {str(label) for label in clf.classes_}
+    if clf_labels != EXPECTED_LABELS:
+        raise ValueError(
+            f"Trained head labels are {sorted(clf_labels)}, expected {sorted(EXPECTED_LABELS)}. "
+            "Run train_head.py after regenerating binary train artifacts."
+        )
+
     if TEST_X_PATH.exists() and TEST_Y_PATH.exists():
         X = np.load(TEST_X_PATH)
         y = np.load(TEST_Y_PATH, allow_pickle=True)
-        validate_vector_artifacts(X, y, feature_name="test_X", label_name="test_y")
-        print(f"Loaded cached test features from {ARTIFACTS_DIR}/")
-        print(f"  test_X.npy shape {X.shape}")
-        print(f"  test_y.npy shape {y.shape}")
-        print_eval_report(clf, X, y)
-        return
+        try:
+            validate_vector_artifacts(X, y, feature_name="test_X", label_name="test_y")
+        except ValueError as exc:
+            print(f"Ignoring stale cached test features: {exc}")
+        else:
+            print(f"Loaded cached test features from {ARTIFACTS_DIR}/")
+            print(f"  test_X.npy shape {X.shape}")
+            print(f"  test_y.npy shape {y.shape}")
+            print_eval_report(clf, X, y)
+            return
 
     from training import article_to_vector, bias_map
 

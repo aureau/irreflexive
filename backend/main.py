@@ -3,8 +3,10 @@ from model import embed_article, bias_axis, score_article
 import numpy as np
 from downloader import dl_html
 from kagglehub import KaggleDatasetAdapter
-
+import os
+import sys
 def main():
+    test_articles_path = 'test-articles/'
     # title, date, content = getArticleSelectors("https://abcnews.com/US/d4vd-murder-case-timeline-investigation-14-year-girls/story?id=132319472")
     # print("Title: ", title)
     # print("Date: ", date)
@@ -16,10 +18,12 @@ def main():
     #     article = dl_html(link)
     # except Exception as e:
     #     print({e})
-    article = 'nwm.html'
-    
+    article = os.path.join(test_articles_path, 'mjn.html')
+    if not os.path.exists(article):
+        print("no article: ", article)
+        sys.exit()
     article_chunks = extract_chunk_and_clean_article(article, True)
-    
+
     # sentence = "The administrations reckless thirst for conflict is a blatant violation of international law and a betrayal of American values."
     # left = np.load('baselines/left-baseline.npy')
     # right = np.load('baselines/right-baseline.npy')

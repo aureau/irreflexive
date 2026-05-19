@@ -28,8 +28,8 @@ def extract_chunk_and_clean_article(article, isFile=True):
         article = tf.extract(article, output_format="markdown")
     
     splitter = lc.RecursiveCharacterTextSplitter(
-        chunk_size=180,
-        chunk_overlap=24
+        chunk_size=512,
+        chunk_overlap=64
     )
     chunks = splitter.split_text(article)
     return chunks

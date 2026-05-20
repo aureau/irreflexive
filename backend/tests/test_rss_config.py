@@ -9,9 +9,9 @@ def test_valid_config_loads():
     assert len(outlets) == 6
     assert outlets[0].outlet_id == "guardian_us"
     assert outlets[0].rss_url == "https://www.theguardian.com/us-news/rss"
-    assert outlets[3].outlet_id == "bbc_world"
+    assert outlets[1].outlet_id == "abc_us_headlines"
     assert outlets[4].outlet_id == "cnn_topstories"
-    assert outlets[5].outlet_id == "abc_us_headlines"
+    assert outlets[5].outlet_id == "bbc_world"
 
 
 def test_missing_rss_url_raises_error():

@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 import sys
 from datetime import UTC, datetime
@@ -11,7 +12,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pydantic import BaseModel, Field, HttpUrl
 
 from backend.rss_aggregator import get_latest_articles
-from backend.rss_config import load_outlets
+from backend.rss_config import Outlet, load_outlets
+from backend.scripts.extract_image_article import extract_article as extract_article_page
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -24,6 +26,8 @@ CHUNK_SIZE = 512
 CHUNK_OVERLAP = 64
 REQUEST_TIMEOUT_SECONDS = 15
 MODEL_VERSION = "head_v1_2class"
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="Irreflexive Article Scoring API",
@@ -209,12 +213,15 @@ class PlaceholderResponse(BaseModel):
 
 
 class ArticleResponse(BaseModel):
+    outlet_id: str
     outlet: str
     title: str
     url: str
     published_at: datetime | None = None
     summary: str | None = None
     image_url: str | None = None
+    image_status: str
+    image_source: str | None = None
     scored: bool
     label: str | None = None
     confidence: float | None = None
@@ -263,12 +270,15 @@ def latest_articles() -> LatestArticlesResponse:
     for item in result.items:
         articles.append(
             ArticleResponse(
+                outlet_id=item.outlet_id,
                 outlet=item.source,
                 title=item.title,
                 url=item.url,
                 published_at=item.published_at,
                 summary=item.summary,
                 image_url=item.image_url,
+                image_status="rss" if item.image_url is not None else "missing",
+                image_source="rss" if item.image_url is not None else None,
                 scored=False,
                 label=None,
                 confidence=None,
@@ -290,6 +300,87 @@ def latest_articles() -> LatestArticlesResponse:
         articles=articles,
         errors=errors,
         fetched_at=datetime.now(UTC),
+    )
+
+
+class ArticleImageRequest(BaseModel):
+    url: HttpUrl = Field(..., description="Article URL to fetch and extract an image from.")
+    outlet_id: str | None = Field(
+        default=None,
+        description="Optional outlet identifier for logging and outlet-specific rules.",
+    )
+
+
+class ArticleImageResponse(BaseModel):
+    url: str
+    outlet_id: str | None = None
+    image_url: str | None = None
+    image_source: str | None = None
+    image_status: str
+    message: str | None = None
+
+
+@app.post("/api/articles/image", response_model=ArticleImageResponse)
+def resolve_article_image(request: ArticleImageRequest) -> ArticleImageResponse:
+    outlets = load_outlets()
+    outlet = None
+    if request.outlet_id is not None:
+        for candidate in outlets:
+            if candidate.outlet_id == request.outlet_id:
+                outlet = candidate
+                break
+
+    return _resolve_article_image(str(request.url), outlet)
+
+
+def _resolve_article_image(url: str, outlet: Outlet | None) -> ArticleImageResponse:
+    try:
+        extracted = extract_article_page(url, outlet)
+    except Exception as exc:
+        logger.warning(
+            "Article image extraction failed",
+            extra={
+                "url": url,
+                "outlet_id": outlet.outlet_id if outlet is not None else None,
+                "outlet": outlet.display_name if outlet is not None else None,
+                "error": str(exc),
+            },
+        )
+        return ArticleImageResponse(
+            url=url,
+            outlet_id=outlet.outlet_id if outlet is not None else None,
+            image_url=None,
+            image_source=None,
+            image_status="missing",
+            message=str(exc),
+        )
+
+    if extracted.image_url:
+        logger.info(
+            "Filled article image from article page",
+            extra={
+                "url": url,
+                "outlet_id": outlet.outlet_id if outlet is not None else None,
+                "outlet": outlet.display_name if outlet is not None else None,
+                "image_source": extracted.image_source,
+            },
+        )
+        return ArticleImageResponse(
+            url=str(url),
+            outlet_id=outlet.outlet_id if outlet is not None else None,
+            image_url=extracted.image_url,
+            image_source=extracted.image_source,
+            image_status="article_extract",
+            message=None,
+        )
+
+    return ArticleImageResponse(
+        url=str(url),
+        outlet_id=outlet.outlet_id if outlet is not None else None,
+        image_url=None,
+        image_source=None,
+        image_status="missing",
+        message="No usable image was found on the article page.",
     )
 
 

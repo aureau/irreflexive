@@ -13,6 +13,7 @@ class Outlet(BaseModel):
     display_name: str = Field(min_length=1)
     rss_url: str = Field(min_length=1)
     homepage: str | None = None
+    article_image_extraction: bool = False
 
     @field_validator("outlet_id", "display_name", "rss_url", "homepage", mode="before")
     @classmethod
@@ -70,6 +71,7 @@ DEFAULT_OUTLETS: list[dict[str, str]] = [
         "display_name": "BBC News - World",
         "rss_url": "https://feeds.bbci.co.uk/news/world/rss.xml",
         "homepage": "https://www.bbc.com/news/world",
+        "article_image_extraction": True,
     },
 ]
 

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ClockIcon } from "@/components/icons";
 
 interface LatestArticle {
+  outlet_id: string;
   outlet: string;
   title: string;
   url: string;

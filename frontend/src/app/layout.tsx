@@ -16,9 +16,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Irreflexive — see the lean before the lead",
+  title: "Irreflexive — read the news, then read the lean",
   description:
-    "Irreflexive scores political bias in news articles using calibrated embeddings, so you can read with context instead of conclusions.",
+    "A news reader that scores political bias on every article using calibrated embeddings, so you can read with context.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

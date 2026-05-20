@@ -12,9 +12,11 @@ export function TrendingSection() {
 
   const { deck, related } = useMemo(() => {
     const pool = articlesByTag(active);
+    const deckSlice = pool.slice(0, 3);
+    const deckIds = new Set(deckSlice.map((a) => a.id));
     return {
-      deck: pool.slice(0, 3),
-      related: pool.slice(1, 5),
+      deck: deckSlice,
+      related: pool.filter((a) => !deckIds.has(a.id)).slice(0, 4),
     };
   }, [active]);
 

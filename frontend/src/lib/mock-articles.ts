@@ -65,6 +65,28 @@ export const ARTICLES: Article[] = [
     lean: "center",
     href: "#",
   },
+  {
+    id: "p6",
+    title: "Voter ID lawsuit heads to appeals court in swing state",
+    source: "AP",
+    date: "2026-05-15",
+    tag: "politics",
+    image: "/images/article-placeholder-2.svg",
+    bias: 0.15,
+    lean: "right",
+    href: "#",
+  },
+  {
+    id: "p7",
+    title: "Cabinet reshuffle signals new priorities ahead of midterms",
+    source: "The Hill",
+    date: "2026-05-14",
+    tag: "politics",
+    image: "/images/article-placeholder-3.svg",
+    bias: -0.07,
+    lean: "center",
+    href: "#",
+  },
 
   // conflict
   {
@@ -120,6 +142,28 @@ export const ARTICLES: Article[] = [
     image: "/images/article-placeholder-2.svg",
     bias: -0.04,
     lean: "center",
+    href: "#",
+  },
+  {
+    id: "c6",
+    title: "Diplomatic envoys arrive in capital ahead of summit",
+    source: "Reuters",
+    date: "2026-05-13",
+    tag: "conflict",
+    image: "/images/article-placeholder-3.svg",
+    bias: 0.02,
+    lean: "center",
+    href: "#",
+  },
+  {
+    id: "c7",
+    title: "Refugee resettlement program expands across three cities",
+    source: "The Guardian",
+    date: "2026-05-12",
+    tag: "conflict",
+    image: "/images/article-placeholder-4.svg",
+    bias: -0.13,
+    lean: "left",
     href: "#",
   },
 
@@ -179,6 +223,28 @@ export const ARTICLES: Article[] = [
     lean: "right",
     href: "#",
   },
+  {
+    id: "e6",
+    title: "EPA proposes new limits on industrial methane emissions",
+    source: "NYT",
+    date: "2026-05-12",
+    tag: "environment",
+    image: "/images/article-placeholder-2.svg",
+    bias: -0.21,
+    lean: "left",
+    href: "#",
+  },
+  {
+    id: "e7",
+    title: "Drought eases across central plains after spring rains",
+    source: "AP",
+    date: "2026-05-11",
+    tag: "environment",
+    image: "/images/article-placeholder-1.svg",
+    bias: -0.02,
+    lean: "center",
+    href: "#",
+  },
 
   // finance
   {
@@ -234,6 +300,28 @@ export const ARTICLES: Article[] = [
     image: "/images/article-placeholder-4.svg",
     bias: -0.16,
     lean: "left",
+    href: "#",
+  },
+  {
+    id: "f6",
+    title: "Energy giant earnings raise fresh windfall-tax debate",
+    source: "FT",
+    date: "2026-05-12",
+    tag: "finance",
+    image: "/images/article-placeholder-1.svg",
+    bias: 0.13,
+    lean: "right",
+    href: "#",
+  },
+  {
+    id: "f7",
+    title: "Retail sales slip as consumers tighten spending",
+    source: "Bloomberg",
+    date: "2026-05-11",
+    tag: "finance",
+    image: "/images/article-placeholder-2.svg",
+    bias: -0.06,
+    lean: "center",
     href: "#",
   },
 
@@ -293,9 +381,30 @@ export const ARTICLES: Article[] = [
     lean: "center",
     href: "#",
   },
+  {
+    id: "s6",
+    title: "Rookie phenom resets league rebound record in milestone win",
+    source: "The Athletic",
+    date: "2026-05-10",
+    tag: "sports",
+    image: "/images/article-placeholder-2.svg",
+    bias: 0.01,
+    lean: "center",
+    href: "#",
+  },
+  {
+    id: "s7",
+    title: "Stadium financing deal stalls in city council vote",
+    source: "AP",
+    date: "2026-05-09",
+    tag: "sports",
+    image: "/images/article-placeholder-3.svg",
+    bias: -0.04,
+    lean: "center",
+    href: "#",
+  },
 ];
 
 export function articlesByTag(tag: HashTag): Article[] {
-  const matches = ARTICLES.filter((a) => a.tag === tag);
-  return matches.length > 0 ? matches : ARTICLES;
+  return ARTICLES.filter((a) => a.tag === tag);
 }

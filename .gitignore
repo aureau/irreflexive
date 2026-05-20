@@ -4,3 +4,6 @@ NOTES.md
 .venv/
 .cursor/
 __pycache__/
+backend/data/*.db
+backend/data/*.db-shm
+backend/data/*.db-wal

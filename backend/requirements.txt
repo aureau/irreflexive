@@ -1,11 +1,15 @@
 beautifulsoup4
+fastapi
 joblib
 kagglehub
 langchain-text-splitters
 numpy
 pandas
+pydantic
+pytest
 requests
 scikit-learn
 sentence-transformers
 tqdm
 trafilatura
+uvicorn

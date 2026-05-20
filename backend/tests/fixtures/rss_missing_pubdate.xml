@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Missing Date Feed</title>
+    <item>
+      <title>No Date Story</title>
+      <link>https://example.com/no-date-story</link>
+      <description>No date summary.</description>
+    </item>
+  </channel>
+</rss>

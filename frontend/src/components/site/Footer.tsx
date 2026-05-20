@@ -78,7 +78,7 @@ export function Footer() {
 
         <div className="rule-line mt-12 flex flex-col items-start justify-between gap-2 pt-6 text-xs text-[var(--color-ink-dim)] sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} Irreflexive. Built in the open.</p>
-          <p>v0 · mock data · no backend connected</p>
+          <p>v0 · live RSS metadata · scoring next</p>
         </div>
       </div>
     </footer>

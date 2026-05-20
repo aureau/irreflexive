@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Example RSS Feed</title>
+    <item>
+      <title>Older RSS Story</title>
+      <link>https://example.com/older-rss-story</link>
+      <pubDate>Mon, 18 May 2026 09:00:00 GMT</pubDate>
+      <description>Older RSS summary.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" width="140" url="https://example.com/older-rss-guardian-style.jpg?width=140&amp;quality=85" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" width="460" url="https://example.com/older-rss-guardian-style.jpg?width=460&amp;quality=85" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" width="700" url="https://example.com/older-rss-guardian-style.jpg?width=700&amp;quality=85" />
+    </item>
+    <item>
+      <title>Newest RSS Story</title>
+      <link>https://example.com/newest-rss-story</link>
+      <pubDate>Tue, 19 May 2026 10:30:00 GMT</pubDate>
+      <description>Newest RSS summary.</description>
+      <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://example.com/newest-rss-image.jpg" />
+    </item>
+    <item>
+      <title>NPR Encoded Image Story</title>
+      <link>https://example.com/npr-encoded-image-story</link>
+      <pubDate>Sun, 17 May 2026 09:00:00 GMT</pubDate>
+      <description>NPR encoded image summary.</description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/">
+        <![CDATA[
+          <img src='https://npr.brightspotcdn.com/story-image.jpg' alt='Story image' />
+          <p>Story body.</p>
+          <img src='https://media.npr.org/include/images/tracking/npr-rss-pixel.png?story=example' />
+        ]]>
+      </content:encoded>
+    </item>
+  </channel>
+</rss>

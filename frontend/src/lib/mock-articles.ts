@@ -112,17 +112,6 @@ export const ARTICLES: Article[] = [
     href: "#",
   },
   {
-    id: "c3",
-    title: "Aid convoys reach northern districts after week-long blockade",
-    source: "Al Jazeera",
-    date: "2026-05-16",
-    tag: "conflict",
-    image: "/images/article-placeholder-3.svg",
-    bias: -0.18,
-    lean: "left",
-    href: "#",
-  },
-  {
     id: "c4",
     title: "Defense pact signals shift in regional security posture",
     source: "FT",

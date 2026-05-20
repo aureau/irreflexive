@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Example Atom Feed</title>
+  <entry>
+    <title>Older Atom Story</title>
+    <link href="https://example.com/older-atom-story" rel="alternate" />
+    <published>2026-05-18T09:00:00Z</published>
+    <summary>Older Atom summary.</summary>
+  </entry>
+  <entry>
+    <title>Newest Atom Story</title>
+    <link href="https://example.com/newest-atom-story" rel="alternate" />
+    <link href="https://example.com/newest-atom-image.jpg" rel="enclosure" type="image/jpeg" />
+    <updated>2026-05-19T11:00:00Z</updated>
+    <summary>Newest Atom summary.</summary>
+  </entry>
+</feed>

@@ -84,19 +84,3 @@ defined in `globals.css` as `@theme { ... }`:
 1. add a component in `src/components/site/NewSection.tsx`
 2. import + drop into `src/app/page.tsx` between the existing bands
 3. if it needs new data shapes, add types in `src/types/index.ts` first, then mock data in `src/lib/`
-
-## running it
-
-from `frontend/`:
-
-```bash
-npm install        # if node_modules not present
-npm run dev        # next dev on http://localhost:3000
-npm run build      # production build (also runs tsc)
-npm run typecheck  # tsc --noEmit only
-```
-
-## verified
-
-- `npx tsc --noEmit` — clean
-- `next build` — clean, prerenders `/` as static

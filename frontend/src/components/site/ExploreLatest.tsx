@@ -71,7 +71,18 @@ function placeholderFor(index: number): string {
 }
 
 function imageFor(article: LatestArticle, index: number): string {
-  return article.image_url ?? placeholderFor(index);
+  const url = article.image_url;
+  if (!url) return placeholderFor(index);
+  const trimmed = url.trim();
+  if (!trimmed || trimmed === "undefined") return placeholderFor(index);
+  if (
+    trimmed.startsWith("/") ||
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://")
+  ) {
+    return trimmed;
+  }
+  return placeholderFor(index);
 }
 
 export function ExploreLatest() {
@@ -112,7 +123,7 @@ export function ExploreLatest() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="eyebrow">Live RSS</p>
+            <p className="eyebrow"></p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl">Explore Latest</h2>
           </div>
           <div className="flex items-center gap-3">
@@ -219,7 +230,7 @@ export function ExploreLatest() {
                           href={article.url}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-sm font-medium text-[var(--color-accent)] hover:underline"
+                          className="text-sm font-medium text-[var(--color-accent)] hover:underline hidden"
                         >
                           Open article
                         </Link>

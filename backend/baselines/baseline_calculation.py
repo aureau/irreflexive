@@ -2,8 +2,8 @@ import sys
 import os
 sys.path.append('../')
 import glob
-from chunking import extract_chunk_and_clean_article
-from model import embed_article
+from backend.scripts.chunking import extract_chunk_and_clean_article
+from backend.scoring.model import embed_article
 import numpy as np
 '''
 Pass every chunk from your "Baseline Left" article through all-MiniLM-L6-v2 to get a list of vectors.

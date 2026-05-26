@@ -3,8 +3,8 @@ from datetime import UTC, datetime
 from fastapi.testclient import TestClient
 
 from api.main import app
-from backend.rss_aggregator import AggregatedFeedResult, OutletFetchError
-from backend.rss_feed import FeedItem
+from backend.rss.rss_aggregator import AggregatedFeedResult, OutletFetchError
+from backend.rss.rss_feed import FeedItem
 
 
 client = TestClient(app)

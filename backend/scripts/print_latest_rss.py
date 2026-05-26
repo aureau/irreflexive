@@ -7,8 +7,8 @@ REPO_ROOT = BACKEND_DIR.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from backend.rss_aggregator import get_latest_articles
-from backend.rss_config import load_outlets
+from backend.rss.rss_aggregator import get_latest_articles
+from backend.rss.rss_config import load_outlets
 
 
 def main() -> None:

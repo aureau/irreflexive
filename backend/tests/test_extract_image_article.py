@@ -1,4 +1,4 @@
-from backend.rss_config import load_outlets
+from backend.rss.rss_config import load_outlets
 from backend.scripts.extract_image_article import extract_article
 
 

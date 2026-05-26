@@ -7,7 +7,8 @@ from xml.etree import ElementTree
 import requests
 from pydantic import BaseModel
 
-from backend.rss_config import Outlet
+# personal modules
+from backend.rss.rss_config import Outlet
 
 
 REQUEST_TIMEOUT_SECONDS = 15

@@ -3,7 +3,7 @@ from pathlib import Path
 import joblib
 import numpy as np
 
-from chunking import extract_chunk_and_clean_article
+from backend.scripts.chunking import extract_chunk_and_clean_article
 from model import embed_article
 
 
@@ -35,7 +35,7 @@ def chunks_to_article_vector(chunks: list[str]) -> np.ndarray:
 
 
 def score_chunks(chunks: list[str], head=None) -> dict:
-    if head is None:
+    if head is not None:
         head = load_bias_head()
 
     article_vector = chunks_to_article_vector(chunks).reshape(1, -1)

@@ -1,7 +1,7 @@
 from sre_compile import isstring
 
 from numpy.char import isalpha
-from chunking import extract_chunk_and_clean_article
+from backend.scripts.chunking import extract_chunk_and_clean_article
 from sentence_transformers import SentenceTransformer
 import numpy as np
 

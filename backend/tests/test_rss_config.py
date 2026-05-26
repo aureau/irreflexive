@@ -1,6 +1,6 @@
 import pytest
 
-from backend.rss_config import FeedConfigError, load_outlets
+from backend.rss.rss_config import FeedConfigError, load_outlets
 
 
 def test_valid_config_loads():

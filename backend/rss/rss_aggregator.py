@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 
-from backend.rss_config import Outlet
-from backend.rss_feed import FeedItem, fetch_feed
+# personal modules
+from backend.rss.rss_config import Outlet
+from backend.rss.rss_feed import FeedItem, fetch_feed
 from backend.storage import upsert_article_from_feed_item
 
 

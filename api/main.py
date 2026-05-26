@@ -11,8 +11,8 @@ from fastapi import FastAPI, HTTPException
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pydantic import BaseModel, Field, HttpUrl
 
-from backend.rss_aggregator import get_latest_articles
-from backend.rss_config import Outlet, load_outlets
+from backend.rss.rss_aggregator import get_latest_articles
+from backend.rss.rss_config import Outlet, load_outlets
 from backend.scripts.extract_image_article import extract_article as extract_article_page
 
 
@@ -43,9 +43,9 @@ def _ensure_backend_import_path() -> None:
 
 
 @lru_cache(maxsize=1)
-def _load_score_chunks():
+def _load_score_chunks(): # not loading module in until i actually need it
     _ensure_backend_import_path()
-    from scorer import score_chunks
+    from backend.scoring.scorer import score_chunks
 
     return score_chunks
 

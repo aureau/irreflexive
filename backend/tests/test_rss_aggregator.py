@@ -1,8 +1,8 @@
 from datetime import UTC, datetime
 
-from backend.rss_aggregator import get_latest_articles
-from backend.rss_config import Outlet
-from backend.rss_feed import FeedItem
+from backend.rss.rss_aggregator import get_latest_articles
+from backend.rss.rss_config import Outlet
+from backend.rss.rss_feed import FeedItem
 
 
 def test_storage_upsert_is_called_for_kept_items(monkeypatch):

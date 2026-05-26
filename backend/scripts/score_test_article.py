@@ -7,7 +7,7 @@ BACKEND_DIR = Path(__file__).resolve().parents[1]
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
-from scorer import score_article_file
+from backend.scoring.scorer import score_article_file
 
 
 DEFAULT_ARTICLE = BACKEND_DIR / "test-articles" / "ridt.html"

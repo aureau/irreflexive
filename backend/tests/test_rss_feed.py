@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
-from backend.rss_config import Outlet
-from backend.rss_feed import FeedParseError, fetch_feed, parse_feed_xml
+from backend.rss.rss_config import Outlet
+from backend.rss.rss_feed import FeedParseError, fetch_feed, parse_feed_xml
 
 
 FIXTURE_DIR = Path(__file__).parent / "fixtures"

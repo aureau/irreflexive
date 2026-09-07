@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#2d4a3a"/>
+      <stop offset="1" stop-color="#5a7d68"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g2)"/>
+  <g opacity="0.2" fill="#ffffff">
+    <path d="M0 380 L200 320 L400 360 L600 290 L800 340 L800 500 L0 500 Z"/>
+    <circle cx="640" cy="140" r="50"/>
+  </g>
+  <text x="50%" y="52%" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#ffffff" opacity="0.6">world</text>
+</svg>

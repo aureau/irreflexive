@@ -1,0 +1,82 @@
+{
+    "www.theguardian.com": {
+        "main": {
+            "title": ["h1.dcr-1k1a1k", "h1"],
+            "date": ["span.dcr-u0h1qy", "time.date"],
+            "content": {
+                "paragraph-selectors": ["div.dcr-ydnaza", "p"],
+                "inline-paragraph-selectors": ["p.dcr-130mj7b", "p"],
+                "avoiders": ["div.ad-slot-container", "data-ad-slot.true"]
+            }
+        },
+        "live": {
+            "title": "x",
+            "date": "x",
+            "content": {
+                "paragraph-selectors": "x",
+                "inline-paragraph-selectors": "x",
+                "avoiders": "x"
+            }
+        }
+    },
+    "npr.org": {
+        "main": {
+            "title": ["div.storytitle h1", "h1"],
+            "date": ["div.dateblock", "time.date"],
+            "content": {
+                "paragraph-selectors": ["div.storytext p", "p"],
+                "inline-paragraph-selectors": ["div.storytext p", "p"],
+                "avoiders": "x"
+            }
+        },
+        "live": {
+            "title": "x",
+            "date": "x",
+            "content": {
+                "paragraph-selectors": "x",
+                "inline-paragraph-selectors": "x",
+                "avoiders": "x"
+            }
+        }
+    },
+    "apnews.com": {
+        "main": {
+            "title": ["h1.Page-headline", "h1"],
+            "date": ["bsp-timestamp[data-timestamp]"],
+            "content": {
+                "paragraph-selectors": ["div.RichTextStoryBody", "p"],
+                "inline-paragraph-selectors": ["div.RichTextStoryBody", "p"],
+                "avoiders": "x"
+            }
+        },
+        "live": {
+            "title": "x",
+            "date": "x",
+            "content": {
+                "paragraph-selectors": "x",
+                "inline-paragraph-selectors": "x",
+                "avoiders": "x"
+            }
+        }
+    },
+    "abcnews.com": {
+        "main": {
+            "title": ["span.gtOSm FbbUW tUtYa vOCwz EQwFq yCufu eEak Qmvg nyTIa SRXVc vzLa jgBfc WXDas CiUCW kqbG zrdEG txGfn ygKVe BbezD UOtxr CVfpq xijV soGRS XgdC sEIlf daWqJ", "h1.vMjAx gjbzK tntuS eHrJ mTgUP", "div[data-testid='prism-headline']"],
+            "date": ["div[data-testid='prism-byline']"],
+            "content": {
+                "paragraph-selectors": ["p.EkqkG IGXmU nlgHS yuUao lqtkC TjIXL aGjvy ", "p", "div[data-testid='prism-article-body']"],
+                "inline-paragraph-selectors": ["div[data-testid='prism-article-body']"],
+                "avoiders": "x"
+            }
+        },
+        "live": {
+            "title": "x",
+            "date": "x",
+            "content": {
+                "paragraph-selectors": "x",
+                "inline-paragraph-selectors": "x",
+                "avoiders": "x"
+            }
+        }
+    }
+}

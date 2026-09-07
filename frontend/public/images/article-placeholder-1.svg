@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1f2a4d"/>
+      <stop offset="1" stop-color="#3a4a7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g1)"/>
+  <g opacity="0.18" fill="#ffffff">
+    <circle cx="120" cy="120" r="60"/>
+    <circle cx="680" cy="380" r="90"/>
+    <rect x="320" y="180" width="240" height="160" rx="20"/>
+  </g>
+  <text x="50%" y="52%" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#ffffff" opacity="0.6">politics</text>
+</svg>

@@ -7,10 +7,10 @@ from tqdm import tqdm
 os.makedirs('corp-baselines', exist_ok=True)
 
 model = SentenceTransformer("sentence-transformers/all-MiniLM-L12-v2")
-text_splitter = lc.RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+text_splitter = lc.RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=64)
 
 
-path = 'datasets/bias_clean.csv'
+path = 'datasets/bias_clean.,`csv'
 df = pd.read_csv(path)
 df = df.dropna(subset=['bias', 'page_text'])
 bias_map = {
@@ -30,7 +30,7 @@ def process_corpus(texts):
         chunks = text_splitter.split_text(text)
         chunk_embeddings = []
         for chunk in chunks:
-            embeddings = model.encode(chunk, batch_size=32, show_progress_bar=False)
+            embeddings = model.encode(chunk, batch_size=32, show_progress_bar=True)
             # single string -> (dim,); batch -> (n, dim) — never mean over dim axis on 1d
             if embeddings.ndim == 1:
                 vec = embeddings

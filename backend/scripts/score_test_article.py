@@ -4,13 +4,14 @@ from pathlib import Path
 
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
-if str(BACKEND_DIR) not in sys.path:
-    sys.path.insert(0, str(BACKEND_DIR))
+REPO_ROOT = BACKEND_DIR.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 from backend.scoring.scorer import score_article_file
 
 
-DEFAULT_ARTICLE = BACKEND_DIR / "test-articles" / "ridt.html"
+DEFAULT_ARTICLE = BACKEND_DIR / "legacy" / "test-articles" / "rrght.html"
 
 
 def parse_args() -> argparse.Namespace:

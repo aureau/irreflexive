@@ -8,7 +8,7 @@ from typing import Literal
 from pydantic import BaseModel
 
 from backend.db.connection import DB_PATH, get_connection, init_db
-from backend.rss_feed import FeedItem
+from backend.rss.rss_feed import FeedItem
 
 
 FetchStatus = Literal["pending", "ok", "failed"]

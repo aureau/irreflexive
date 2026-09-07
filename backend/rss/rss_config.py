@@ -35,7 +35,7 @@ class Outlet(BaseModel):
         return value
 
 
-DEFAULT_OUTLETS: list[dict[str, str]] = [
+DEFAULT_OUTLETS: list[dict[str, Any]] = [
     {
         "outlet_id": "guardian_us",
         "display_name": "The Guardian - US News",
@@ -45,7 +45,7 @@ DEFAULT_OUTLETS: list[dict[str, str]] = [
     {
         "outlet_id": "abc_us_headlines",
         "display_name": "ABC News US Headlines",
-        "rss_url": "https://abcnews.com/abcnews/usheadlines?nc=1779255631142&_rnd=uxou0g&noCache=true",
+        "rss_url": "https://abcnews.com/abcnews/usheadlines",
         "homepage": "https://abcnews.go.com/",
     },
     {
@@ -60,7 +60,7 @@ DEFAULT_OUTLETS: list[dict[str, str]] = [
         "rss_url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
         "homepage": "https://www.nytimes.com/",
     },
-        {
+    {
         "outlet_id": "cnn_topstories",
         "display_name": "CNN Top Stories",
         "rss_url": "http://rss.cnn.com/rss/cnn_topstories.rss",

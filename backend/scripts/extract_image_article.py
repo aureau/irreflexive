@@ -22,8 +22,8 @@ import requests
 import trafilatura as tf
 from bs4 import BeautifulSoup
 
-from backend.rss_aggregator import get_latest_articles
-from backend.rss_config import Outlet, load_outlets
+from backend.rss.rss_aggregator import get_latest_articles
+from backend.rss.rss_config import Outlet, load_outlets
 
 
 REQUEST_TIMEOUT_SECONDS = 15

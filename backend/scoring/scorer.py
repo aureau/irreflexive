@@ -4,11 +4,12 @@ import joblib
 import numpy as np
 
 from backend.scripts.chunking import extract_chunk_and_clean_article
-from model import embed_article
+from backend.scoring.model import embed_article
 
 
 BASE_DIR = Path(__file__).resolve().parent
-HEAD_MODEL_PATH = BASE_DIR / "baselines" / "head-training" / "artifacts" / "bias_head.pkl"
+BACKEND_DIR = BASE_DIR.parent
+HEAD_MODEL_PATH = BACKEND_DIR / "baselines" / "head-training" / "artifacts" / "bias_head.pkl"
 
 
 def load_bias_head(model_path: str | Path = HEAD_MODEL_PATH):
@@ -35,7 +36,7 @@ def chunks_to_article_vector(chunks: list[str]) -> np.ndarray:
 
 
 def score_chunks(chunks: list[str], head=None) -> dict:
-    if head is not None:
+    if head is None:
         head = load_bias_head()
 
     article_vector = chunks_to_article_vector(chunks).reshape(1, -1)
